@@ -87,6 +87,17 @@ const spyIO = new IntersectionObserver(entries => {
 }, { rootMargin: "-40% 0px -55% 0px" });
 document.querySelectorAll("main .section").forEach(s => spyIO.observe(s));
 
+// ═══ gallery lightbox ═══
+const lightbox = document.getElementById("lightbox");
+document.querySelectorAll(".shot img").forEach(img => {
+  img.onclick = () => {
+    lightbox.querySelector("img").src = img.src;
+    lightbox.showModal();
+  };
+});
+lightbox.querySelector(".lightbox-close").onclick = () => lightbox.close();
+lightbox.onclick = e => e.target === lightbox && lightbox.close();
+
 // ═══ copy email ═══
 document.getElementById("copyEmail").onclick = async () => {
   await navigator.clipboard.writeText("Chia5040@gmail.com");
