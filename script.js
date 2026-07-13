@@ -87,16 +87,46 @@ const spyIO = new IntersectionObserver(entries => {
 }, { rootMargin: "-40% 0px -55% 0px" });
 document.querySelectorAll("main .section").forEach(s => spyIO.observe(s));
 
-// ═══ gallery lightbox ═══
+// ═══ gallery: cover-flow carousel + lightbox ═══
 const lightbox = document.getElementById("lightbox");
-document.querySelectorAll(".shot img").forEach(img => {
-  img.onclick = () => {
-    lightbox.querySelector("img").src = img.src;
+lightbox.querySelector(".lightbox-close").onclick = () => lightbox.close();
+lightbox.onclick = e => e.target === lightbox && lightbox.close();
+
+const items = [...document.querySelectorAll(".c-item")];
+const dotsBox = document.getElementById("cDots");
+let active = 1; // start on Home
+
+items.forEach((_, i) => {
+  const d = document.createElement("button");
+  d.className = "c-dot";
+  d.setAttribute("aria-label", "Go to screen " + (i + 1));
+  d.onclick = () => go(i);
+  dotsBox.append(d);
+});
+
+function go(i) {
+  active = (i + items.length) % items.length;
+  items.forEach((el, j) => {
+    const off = j - active;
+    el.style.transform =
+      `translateX(calc(-50% + ${off * 150}px)) scale(${off ? .76 : 1}) rotateY(${off * -14}deg)`;
+    el.style.zIndex = 10 - Math.abs(off);
+    el.style.opacity = Math.abs(off) > 2 ? 0 : off ? .4 : 1;
+    el.classList.toggle("active", !off);
+  });
+  [...dotsBox.children].forEach((d, j) => d.classList.toggle("active", j === active));
+}
+go(active);
+
+items.forEach((el, i) => {
+  el.onclick = () => {
+    if (i !== active) return go(i);
+    lightbox.querySelector("img").src = el.querySelector("img").src;
     lightbox.showModal();
   };
 });
-lightbox.querySelector(".lightbox-close").onclick = () => lightbox.close();
-lightbox.onclick = e => e.target === lightbox && lightbox.close();
+document.getElementById("cPrev").onclick = () => go(active - 1);
+document.getElementById("cNext").onclick = () => go(active + 1);
 
 // ═══ copy email ═══
 document.getElementById("copyEmail").onclick = async () => {

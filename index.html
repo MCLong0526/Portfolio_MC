@@ -164,14 +164,19 @@
         </div>
       </div>
 
-      <p class="gallery-hint mono reveal">// inside the app — drag to explore, click to zoom</p>
-      <div class="shots reveal">
-        <figure class="shot"><img src="assets/trackora-welcome.jpg" alt="Trackora welcome screen" loading="lazy"><figcaption>Welcome</figcaption></figure>
-        <figure class="shot"><img src="assets/trackora-home.jpg" alt="Trackora home — budget and quick add" loading="lazy"><figcaption>Home &amp; budget</figcaption></figure>
-        <figure class="shot"><img src="assets/trackora-stats.jpg" alt="Trackora statistics — spending by category" loading="lazy"><figcaption>Statistics</figcaption></figure>
-        <figure class="shot"><img src="assets/trackora-manage.jpg" alt="Trackora manage — accounts and tools" loading="lazy"><figcaption>Accounts &amp; tools</figcaption></figure>
-        <figure class="shot"><img src="assets/trackora-profile.jpg" alt="Trackora profile — cloud sync" loading="lazy"><figcaption>Profile &amp; sync</figcaption></figure>
+      <p class="gallery-hint mono reveal">// inside the app — browse the screens, click the front one to zoom</p>
+      <div class="carousel reveal">
+        <button class="c-arrow" id="cPrev" aria-label="Previous screen">‹</button>
+        <div class="c-stage" id="cStage">
+          <figure class="c-item"><img src="assets/trackora-welcome.jpg" alt="Trackora welcome screen"><figcaption>Welcome</figcaption></figure>
+          <figure class="c-item"><img src="assets/trackora-home.jpg" alt="Trackora home — budget and quick add"><figcaption>Home &amp; budget</figcaption></figure>
+          <figure class="c-item"><img src="assets/trackora-stats.jpg" alt="Trackora statistics — spending by category"><figcaption>Statistics</figcaption></figure>
+          <figure class="c-item"><img src="assets/trackora-manage.jpg" alt="Trackora manage — accounts and tools"><figcaption>Accounts &amp; tools</figcaption></figure>
+          <figure class="c-item"><img src="assets/trackora-profile.jpg" alt="Trackora profile — cloud sync"><figcaption>Profile &amp; sync</figcaption></figure>
+        </div>
+        <button class="c-arrow" id="cNext" aria-label="Next screen">›</button>
       </div>
+      <div class="c-dots" id="cDots"></div>
       <dialog class="lightbox" id="lightbox">
         <img src="" alt="Trackora screenshot enlarged">
         <button class="lightbox-close" aria-label="Close">✕</button>
