@@ -104,19 +104,30 @@ items.forEach((_, i) => {
   dotsBox.append(d);
 });
 
-// tidy deck: even spacing in item-widths, graduated scale/opacity, no rotation
-const SCALES = [1, .8, .62];
-const FADES = [1, .5, .18];
+// tidy deck: 3 visible phones, shortest wrapped offsets, no ghost sweeps
+const SCALES = [1, .8, .6];
+const FADES = [1, .45, 0];
+let firstRender = true;
 function go(i) {
-  active = (i + items.length) % items.length;
+  const n = items.length;
+  active = (i + n) % n;
   items.forEach((el, j) => {
-    const off = j - active;
+    // shortest signed distance around the ring: always -2..+2 for 5 items
+    let off = (j - active + n) % n;
+    if (off > n / 2) off -= n;
     const d = Math.min(Math.abs(off), 2);
+    const prev = el.dataset.off === undefined ? off : +el.dataset.off;
+    el.dataset.off = off;
+    // an item swapping sides (or first paint) snaps instead of sweeping across
+    const snap = firstRender || Math.abs(off - prev) > 2;
+    if (snap) el.style.transition = "none";
     el.style.transform = `translateX(calc(-50% + ${off * 68}%)) scale(${SCALES[d]})`;
     el.style.zIndex = 10 - Math.abs(off);
-    el.style.opacity = Math.abs(off) > 2 ? 0 : FADES[d];
+    el.style.opacity = FADES[d];
     el.classList.toggle("active", !off);
+    if (snap) { void el.offsetHeight; el.style.transition = ""; }
   });
+  firstRender = false;
   [...dotsBox.children].forEach((d, j) => d.classList.toggle("active", j === active));
 }
 go(active);

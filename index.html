@@ -27,6 +27,8 @@
     <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
     <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></symbol>
     <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+    <symbol id="i-chevl" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></symbol>
+    <symbol id="i-chevr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
   </svg>
 
   <!-- ══════════ NAV ══════════ -->
@@ -166,7 +168,7 @@
 
       <p class="gallery-hint mono reveal">// inside the app — browse the screens, click the front one to zoom</p>
       <div class="carousel reveal">
-        <button class="c-arrow" id="cPrev" aria-label="Previous screen">‹</button>
+        <button class="c-arrow" id="cPrev" aria-label="Previous screen"><svg class="icon"><use href="#i-chevl"/></svg></button>
         <div class="c-stage" id="cStage">
           <figure class="c-item"><img src="assets/trackora-welcome.jpg" alt="Trackora welcome screen"><figcaption>Welcome</figcaption></figure>
           <figure class="c-item"><img src="assets/trackora-home.jpg" alt="Trackora home — budget and quick add"><figcaption>Home &amp; budget</figcaption></figure>
@@ -174,7 +176,7 @@
           <figure class="c-item"><img src="assets/trackora-manage.jpg" alt="Trackora manage — accounts and tools"><figcaption>Accounts &amp; tools</figcaption></figure>
           <figure class="c-item"><img src="assets/trackora-profile.jpg" alt="Trackora profile — cloud sync"><figcaption>Profile &amp; sync</figcaption></figure>
         </div>
-        <button class="c-arrow" id="cNext" aria-label="Next screen">›</button>
+        <button class="c-arrow" id="cNext" aria-label="Next screen"><svg class="icon"><use href="#i-chevr"/></svg></button>
       </div>
       <div class="c-dots" id="cDots"></div>
       <dialog class="lightbox" id="lightbox">

@@ -226,11 +226,13 @@ strong { color: var(--accent); font-weight: 600; }
 .c-item.active figcaption { opacity: 1; }
 .c-arrow {
   flex: none; width: 46px; height: 46px; border-radius: 50%;
-  border: 1px solid var(--line); background: var(--card); color: var(--accent);
-  font-size: 1.7rem; line-height: 1; cursor: pointer;
-  transition: transform .15s, border-color .15s;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); background: var(--card); cursor: pointer;
+  transition: transform .15s, border-color .15s, background .15s;
 }
-.c-arrow:hover { transform: scale(1.12); border-color: var(--accent); }
+.c-arrow .icon { width: 21px; height: 21px; stroke-width: 2.2; }
+.c-arrow:hover { transform: scale(1.1); border-color: var(--accent); }
+.c-arrow:active { transform: scale(.96); }
 .c-dots { display: flex; justify-content: center; gap: .55rem; margin-top: 1rem; }
 .c-dot {
   width: 9px; height: 9px; border-radius: 50%; border: 0; padding: 0;
