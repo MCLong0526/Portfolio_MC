@@ -91,21 +91,29 @@ document.querySelectorAll("main .section").forEach(s => spyIO.observe(s));
 const lightbox = document.getElementById("lightbox");
 const lbImg = lightbox.querySelector("img");
 const lbCap = document.getElementById("lbCap");
+const lbCount = document.getElementById("lbCount");
+const lbDots = document.getElementById("lbDots");
 
+function lbMeta() {
+  lbCap.textContent = items[active].querySelector("figcaption").textContent;
+  lbCount.textContent = (active + 1) + " / " + items.length;
+  [...lbDots.children].forEach((d, j) => d.classList.toggle("active", j === active));
+}
 function lbShow(i) {
   go(i); // keep the deck behind in sync
-  const item = items[active];
   lbImg.style.opacity = 0;
+  lbImg.style.transform = "scale(.96)";
   setTimeout(() => {
-    lbImg.src = item.querySelector("img").src;
-    lbCap.textContent = item.querySelector("figcaption").textContent;
-    lbImg.onload = () => (lbImg.style.opacity = 1);
-  }, 160);
+    lbImg.src = items[active].querySelector("img").src;
+    lbMeta();
+    lbImg.onload = () => { lbImg.style.opacity = 1; lbImg.style.transform = ""; };
+  }, 170);
 }
 function lbOpen() {
   lbImg.src = items[active].querySelector("img").src;
   lbImg.style.opacity = 1;
-  lbCap.textContent = items[active].querySelector("figcaption").textContent;
+  lbImg.style.transform = "";
+  lbMeta();
   lightbox.showModal();
 }
 function lbClose() {
@@ -144,6 +152,15 @@ items.forEach((_, i) => {
   d.setAttribute("aria-label", "Go to screen " + (i + 1));
   d.onclick = () => go(i);
   dotsBox.append(d);
+});
+
+// popup dots (built here so `items` exists)
+items.forEach((_, i) => {
+  const d = document.createElement("button");
+  d.className = "c-dot";
+  d.setAttribute("aria-label", "Go to screen " + (i + 1));
+  d.onclick = () => lbShow(i);
+  lbDots.append(d);
 });
 
 // tidy deck: 3 visible phones, shortest wrapped offsets, no ghost sweeps

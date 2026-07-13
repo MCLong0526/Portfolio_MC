@@ -183,8 +183,12 @@
         <button class="c-arrow lb-nav" id="lbPrev" aria-label="Previous screen"><svg class="icon"><use href="#i-chevl"/></svg></button>
         <figure class="lb-figure">
           <img src="" alt="Trackora screenshot enlarged">
-          <figcaption id="lbCap"></figcaption>
           <button class="lightbox-close" aria-label="Close">✕</button>
+          <figcaption>
+            <span id="lbCap"></span>
+            <span class="lb-count mono" id="lbCount"></span>
+          </figcaption>
+          <div class="lb-dots" id="lbDots"></div>
         </figure>
         <button class="c-arrow lb-nav" id="lbNext" aria-label="Next screen"><svg class="icon"><use href="#i-chevr"/></svg></button>
       </dialog>
