@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Chia — Software Engineer</title>
+  <meta name="description" content="Michael Chia Cheng Long — Software Engineer & Java Backend Developer. Builder of Trackora, a personal finance app with 300+ users.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <header class="nav" id="top">
+    <a class="nav-logo" href="#top">MC<span class="accent">.</span></a>
+    <nav class="nav-links">
+      <a href="#about" data-spy>About</a>
+      <a href="#experience" data-spy>Experience</a>
+      <a href="#project" data-spy>Project</a>
+      <a href="#skills" data-spy>Skills</a>
+      <a href="#contact" data-spy>Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="toggle-icon"></span>
+    </button>
+  </header>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <p class="hero-kicker reveal">// Kuching, Sarawak, Malaysia</p>
+    <h1 class="hero-name reveal">Michael<br>Chia<span class="accent">.</span></h1>
+    <p class="hero-role reveal">
+      <span class="mono">$</span> whoami →
+      <span id="typewriter" class="typewriter"></span><span class="caret">▌</span>
+    </p>
+    <p class="hero-blurb reveal">
+      Software engineer with <strong>2+ years</strong> building enterprise systems in
+      Java &amp; Spring Boot — and founder of <strong>Trackora</strong>, a personal
+      finance app with <strong>300+ users</strong> on the App Store.
+    </p>
+    <div class="hero-cta reveal">
+      <a class="btn btn-solid" href="#project">See my work ↓</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>JAVA ✦ SPRING BOOT ✦ FLUTTER ✦ VUE.JS ✦ SQL SERVER ✦ FIREBASE ✦ SUPABASE ✦ REST APIs ✦ AI TOOLING ✦&nbsp;</span>
+        <span>JAVA ✦ SPRING BOOT ✦ FLUTTER ✦ VUE.JS ✦ SQL SERVER ✦ FIREBASE ✦ SUPABASE ✦ REST APIs ✦ AI TOOLING ✦&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ══════════ ABOUT / STATS ══════════ -->
+    <section class="section" id="about">
+      <h2 class="section-title reveal"><span class="mono section-num">01</span> About</h2>
+      <div class="about-grid">
+        <p class="about-text reveal">
+          I lead backend development across <strong>three production systems</strong>
+          supporting digital oil transfer operations at Bunkerchain — designing REST
+          APIs, workflow automation, certificate management and e-signature features.
+          On the side, I design, build and ship my own products end-to-end: from
+          Figma mockups to the App Store.
+        </p>
+        <div class="stats reveal">
+          <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-plus">+</span><span class="stat-label">years engineering</span></div>
+          <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label">production systems</span></div>
+          <div class="stat"><span class="stat-num" data-count="300">0</span><span class="stat-plus">+</span><span class="stat-label">Trackora users</span></div>
+          <div class="stat"><span class="stat-num" data-count="3.89">0</span><span class="stat-label">CGPA / 4.00 · UNIMAS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ EXPERIENCE ══════════ -->
+    <section class="section" id="experience">
+      <h2 class="section-title reveal"><span class="mono section-num">02</span> Experience</h2>
+
+      <article class="xp reveal open">
+        <button class="xp-head" aria-expanded="true">
+          <div>
+            <h3>Java Backend Developer</h3>
+            <p class="xp-org">Bunkerchain Pte Ltd</p>
+          </div>
+          <span class="xp-date mono">Aug 2024 — Present</span>
+          <span class="xp-chevron" aria-hidden="true">›</span>
+        </button>
+        <div class="xp-body">
+          <ul>
+            <li>Develop and maintain three enterprise web applications — <strong>JPUT, JPTT and Horizon Connect</strong> — supporting digital oil transfer operations.</li>
+            <li>Design RESTful APIs with Java, Spring Boot and SQL Server.</li>
+            <li>Delivered workflow automation, certificate management and electronic-signature features.</li>
+            <li>Investigate and resolve production issues, improving reliability.</li>
+            <li>Contribute Vue.js frontend enhancements when required.</li>
+            <li>Leverage AI tooling (OpenAI, Claude, Cursor) to accelerate delivery.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="xp reveal">
+        <button class="xp-head" aria-expanded="false">
+          <div>
+            <h3>Founder &amp; Mobile App Developer</h3>
+            <p class="xp-org">Trackora — Personal Finance App</p>
+          </div>
+          <span class="xp-date mono">Apr 2026 — Present</span>
+          <span class="xp-chevron" aria-hidden="true">›</span>
+        </button>
+        <div class="xp-body">
+          <ul>
+            <li>Designed, built and published Trackora with Flutter, Firebase and Supabase — <strong>300+ active users</strong> on the Apple App Store.</li>
+            <li>Shipped expense tracking, budgeting, OCR receipt scanning, multi-currency support and cloud sync.</li>
+            <li>Own the complete product lifecycle: design → development → deployment → iteration.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="xp reveal">
+        <button class="xp-head" aria-expanded="false">
+          <div>
+            <h3>B.Sc. Computational Science (Honors)</h3>
+            <p class="xp-org">University Malaysia Sarawak — CGPA 3.89 / 4.00</p>
+          </div>
+          <span class="xp-date mono">2020 — 2024</span>
+          <span class="xp-chevron" aria-hidden="true">›</span>
+        </button>
+        <div class="xp-body">
+          <ul>
+            <li>Degree of Computational Science with Honors.</li>
+            <li>Certifications: IBM AI Developer Professional (in progress), AI Foundations (OpenAI), Claude 101 &amp; MCP (Anthropic), Google Cybersecurity, Spring Boot 3 &amp; Hibernate (Udemy).</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ══════════ PROJECT ══════════ -->
+    <section class="section" id="project">
+      <h2 class="section-title reveal"><span class="mono section-num">03</span> Featured Project</h2>
+      <div class="project-card reveal" id="tiltCard">
+        <div class="project-info">
+          <p class="mono project-tag">iOS · Flutter · Firebase · Supabase</p>
+          <h3 class="project-name">Trackora<span class="accent">.</span></h3>
+          <p class="project-desc">
+            A personal finance app I took from idea to the App Store, solo.
+            Expense tracking, budgeting, OCR receipt scanning, multi-currency
+            support and cloud synchronization — used by 300+ people.
+          </p>
+          <ul class="project-features">
+            <li>📸 OCR receipt scanning</li>
+            <li>💱 Multi-currency support</li>
+            <li>☁️ Cloud sync across devices</li>
+            <li>📊 Budgets &amp; insights</li>
+          </ul>
+          <a class="btn btn-solid" href="https://apps.apple.com/app/trackora" target="_blank" rel="noopener">View on App Store ↗</a>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <p class="mono phone-title">Trackora</p>
+              <div class="phone-balance"><span class="mono">MYR</span> 4,206.90</div>
+              <div class="phone-bars">
+                <div class="bar" style="--h:62%"></div>
+                <div class="bar" style="--h:40%"></div>
+                <div class="bar" style="--h:85%"></div>
+                <div class="bar" style="--h:55%"></div>
+                <div class="bar" style="--h:72%"></div>
+              </div>
+              <div class="phone-row">🍜 Lunch <span>-12.50</span></div>
+              <div class="phone-row">⛽ Petrol <span>-60.00</span></div>
+              <div class="phone-row">💰 Salary <span class="pos">+4,500</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SKILLS ══════════ -->
+    <section class="section" id="skills">
+      <h2 class="section-title reveal"><span class="mono section-num">04</span> Skills</h2>
+      <div class="skill-filters reveal" role="tablist">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="lang">Languages</button>
+        <button class="filter" data-filter="backend">Backend</button>
+        <button class="filter" data-filter="frontend">Frontend</button>
+        <button class="filter" data-filter="db">Databases</button>
+        <button class="filter" data-filter="ai">AI</button>
+        <button class="filter" data-filter="tools">Tools</button>
+      </div>
+      <div class="skill-cloud reveal">
+        <span class="chip" data-cat="lang">Java</span>
+        <span class="chip" data-cat="lang">Python</span>
+        <span class="chip" data-cat="lang">JavaScript</span>
+        <span class="chip" data-cat="lang">Dart</span>
+        <span class="chip" data-cat="lang">Swift</span>
+        <span class="chip" data-cat="lang">PHP</span>
+        <span class="chip" data-cat="lang">SQL</span>
+        <span class="chip" data-cat="backend">Spring Boot</span>
+        <span class="chip" data-cat="backend">RESTful APIs</span>
+        <span class="chip" data-cat="backend">Spring MVC</span>
+        <span class="chip" data-cat="backend">Maven</span>
+        <span class="chip" data-cat="frontend">Vue.js</span>
+        <span class="chip" data-cat="frontend">Flutter</span>
+        <span class="chip" data-cat="frontend">Vuetify</span>
+        <span class="chip" data-cat="frontend">HTML / CSS</span>
+        <span class="chip" data-cat="db">SQL Server</span>
+        <span class="chip" data-cat="db">MySQL</span>
+        <span class="chip" data-cat="db">Firestore</span>
+        <span class="chip" data-cat="db">Supabase</span>
+        <span class="chip" data-cat="ai">OpenAI API</span>
+        <span class="chip" data-cat="ai">Claude API</span>
+        <span class="chip" data-cat="ai">MCP</span>
+        <span class="chip" data-cat="ai">Prompt Engineering</span>
+        <span class="chip" data-cat="tools">Git / GitHub</span>
+        <span class="chip" data-cat="tools">Docker</span>
+        <span class="chip" data-cat="tools">IntelliJ IDEA</span>
+        <span class="chip" data-cat="tools">Xcode</span>
+        <span class="chip" data-cat="tools">Android Studio</span>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTACT ══════════ -->
+    <section class="section contact" id="contact">
+      <h2 class="section-title reveal"><span class="mono section-num">05</span> Contact</h2>
+      <p class="contact-lead reveal">Have a project or a role in mind?<br>Let's talk<span class="accent">.</span></p>
+      <div class="contact-links reveal">
+        <button class="contact-item" id="copyEmail" title="Click to copy">
+          ✉️ Chia5040@gmail.com <span class="mono copy-hint" id="copyHint">[copy]</span>
+        </button>
+        <a class="contact-item" href="https://github.com/MCLong0526" target="_blank" rel="noopener">🐙 github.com/MCLong0526</a>
+        <a class="contact-item" href="https://www.linkedin.com/in/michael-chia" target="_blank" rel="noopener">💼 LinkedIn</a>
+        <a class="contact-item" href="tel:+60162770526">📞 +6016-277 0526</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="mono">© 2026 Michael Chia Cheng Long — built by hand, no frameworks.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
