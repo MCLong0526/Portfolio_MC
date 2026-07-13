@@ -240,14 +240,42 @@ strong { color: var(--accent); font-weight: 600; }
 }
 .c-dot.active { background: var(--accent); transform: scale(1.35); }
 
-/* lightbox */
-.lightbox { border: 0; padding: 0; background: none; max-width: min(420px, 90vw); }
-.lightbox::backdrop { background: rgba(13, 19, 34, .82); backdrop-filter: blur(4px); }
-.lightbox img { width: 100%; display: block; border-radius: 18px; }
+/* lightbox: phone frame + arrows, animated open/close */
+.lightbox { border: 0; padding: 0; background: none; overflow: visible; }
+.lightbox[open] { display: flex; align-items: center; gap: clamp(.5rem, 3vw, 1.4rem); }
+.lightbox::backdrop { background: rgba(13, 19, 34, .84); backdrop-filter: blur(5px); }
+.lightbox[open] { animation: lbIn .38s cubic-bezier(.22,1,.36,1); }
+.lightbox[open]::backdrop { animation: bdIn .38s ease; }
+.lightbox.closing { animation: lbOut .22s ease forwards; }
+.lightbox.closing::backdrop { animation: bdOut .22s ease forwards; }
+@keyframes lbIn { from { opacity: 0; transform: scale(.85) translateY(18px); } }
+@keyframes bdIn { from { opacity: 0; } }
+@keyframes lbOut { to { opacity: 0; transform: scale(.92) translateY(8px); } }
+@keyframes bdOut { to { opacity: 0; } }
+.lb-figure { margin: 0; }
+.lightbox img {
+  width: min(320px, 72vw); display: block; border-radius: 30px;
+  border: 8px solid #0d1322; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .8);
+  transition: opacity .22s ease;
+}
+.lightbox figcaption {
+  text-align: center; font-family: var(--mono); font-size: .85rem;
+  color: #e08a4e; margin-top: .9rem;
+}
+.lb-nav { background: rgba(246, 241, 231, .08); border-color: rgba(246, 241, 231, .25); }
+.lb-nav .icon { stroke: #f6f1e7; }
+.lb-nav:hover { border-color: #e08a4e; background: rgba(246, 241, 231, .14); }
 .lightbox-close {
-  position: absolute; top: 10px; right: 10px; width: 36px; height: 36px;
-  border: 0; border-radius: 50%; background: rgba(13, 19, 34, .7); color: #f6f1e7;
-  font-size: 1rem; cursor: pointer;
+  position: absolute; top: -14px; right: -14px; width: 38px; height: 38px;
+  border: 1px solid rgba(246, 241, 231, .25); border-radius: 50%;
+  background: #0d1322; color: #f6f1e7; font-size: 1rem; cursor: pointer;
+  transition: transform .15s, border-color .15s;
+}
+.lightbox-close:hover { transform: scale(1.1) rotate(90deg); border-color: #e08a4e; }
+@media (max-width: 760px) {
+  .lightbox[open] { flex-direction: column; }
+  .lightbox-close { top: -6px; right: 2px; }
+  .lb-nav { display: none; } /* ponytail: swipe covers mobile nav in the popup */
 }
 
 /* ── education ── */

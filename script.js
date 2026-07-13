@@ -89,8 +89,50 @@ document.querySelectorAll("main .section").forEach(s => spyIO.observe(s));
 
 // ═══ gallery: cover-flow carousel + lightbox ═══
 const lightbox = document.getElementById("lightbox");
-lightbox.querySelector(".lightbox-close").onclick = () => lightbox.close();
-lightbox.onclick = e => e.target === lightbox && lightbox.close();
+const lbImg = lightbox.querySelector("img");
+const lbCap = document.getElementById("lbCap");
+
+function lbShow(i) {
+  go(i); // keep the deck behind in sync
+  const item = items[active];
+  lbImg.style.opacity = 0;
+  setTimeout(() => {
+    lbImg.src = item.querySelector("img").src;
+    lbCap.textContent = item.querySelector("figcaption").textContent;
+    lbImg.onload = () => (lbImg.style.opacity = 1);
+  }, 160);
+}
+function lbOpen() {
+  lbImg.src = items[active].querySelector("img").src;
+  lbImg.style.opacity = 1;
+  lbCap.textContent = items[active].querySelector("figcaption").textContent;
+  lightbox.showModal();
+}
+function lbClose() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return lightbox.close();
+  lightbox.classList.add("closing");
+  const done = () => { lightbox.classList.remove("closing"); lightbox.close(); };
+  lightbox.addEventListener("animationend", done, { once: true });
+  setTimeout(done, 280); // fallback if the animation is skipped; double-close is harmless
+}
+lightbox.querySelector(".lightbox-close").onclick = lbClose;
+lightbox.onclick = e => e.target === lightbox && lbClose();
+lightbox.addEventListener("cancel", e => { e.preventDefault(); lbClose(); }); // Esc, animated
+document.getElementById("lbPrev").onclick = () => lbShow(active - 1);
+document.getElementById("lbNext").onclick = () => lbShow(active + 1);
+lightbox.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") lbShow(active - 1);
+  if (e.key === "ArrowRight") lbShow(active + 1);
+});
+// swipe inside the popup (mobile has no arrows)
+let lbDragX = null;
+lightbox.addEventListener("pointerdown", e => (lbDragX = e.clientX));
+lightbox.addEventListener("pointerup", e => {
+  if (lbDragX === null) return;
+  const dx = e.clientX - lbDragX;
+  lbDragX = null;
+  if (Math.abs(dx) > 40) lbShow(active + (dx < 0 ? 1 : -1));
+});
 
 const items = [...document.querySelectorAll(".c-item")];
 const dotsBox = document.getElementById("cDots");
@@ -148,8 +190,7 @@ items.forEach((el, i) => {
   el.onclick = () => {
     if (dragged) return (dragged = false); // swipe already handled it
     if (i !== active) return go(i);
-    lightbox.querySelector("img").src = el.querySelector("img").src;
-    lightbox.showModal();
+    lbOpen();
   };
 });
 document.getElementById("cPrev").onclick = () => go(active - 1);
