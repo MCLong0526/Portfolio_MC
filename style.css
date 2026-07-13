@@ -200,25 +200,26 @@ strong { color: var(--accent); font-weight: 600; }
 [data-theme="dark"] .project-card .icon { stroke: var(--accent); }
 .project-card .btn-solid .icon { stroke: #fff; }
 
-/* screenshot gallery: 3D cover-flow carousel */
+/* screenshot gallery: centered deck carousel */
 .gallery-hint { color: var(--accent); margin: 2.2rem 0 1rem; }
-.carousel { display: flex; align-items: center; gap: .6rem; }
+.carousel { display: flex; align-items: center; gap: .8rem; }
 .c-stage {
-  position: relative; flex: 1; height: 540px;
-  perspective: 1400px; overflow: hidden;
+  position: relative; flex: 1; height: 525px;
+  overflow: hidden; touch-action: pan-y;
 }
 .c-item {
-  position: absolute; top: 10px; left: 50%; width: 215px; margin: 0;
-  transition: transform .5s cubic-bezier(.25,.8,.3,1), opacity .5s;
-  will-change: transform;
+  position: absolute; top: 6px; left: 50%; width: 215px; margin: 0;
+  transition: transform .65s cubic-bezier(.22,1,.36,1), opacity .65s ease;
+  will-change: transform; user-select: none; -webkit-user-drag: none;
 }
 .c-item img {
   width: 100%; display: block; border-radius: 26px;
   border: 7px solid #0d1322; box-shadow: var(--shadow);
+  pointer-events: none;
 }
 .c-item figcaption {
   text-align: center; font-family: var(--mono); font-size: .78rem;
-  color: var(--accent); margin-top: .7rem; opacity: 0; transition: opacity .4s;
+  color: var(--accent); margin-top: .7rem; opacity: 0; transition: opacity .45s;
 }
 .c-item.active { cursor: zoom-in; }
 .c-item:not(.active) { cursor: pointer; }
@@ -322,7 +323,7 @@ strong { color: var(--accent); font-weight: 600; }
   .about-grid, .project-card, .edu-grid, .cert-courses { grid-template-columns: 1fr; }
   .xp-date { display: none; }
   .hero { min-height: 74vh; }
-  .c-stage { height: 440px; }
+  .c-stage { height: 425px; }
   .c-item { width: 168px; }
   .c-arrow { width: 38px; height: 38px; font-size: 1.4rem; }
 }

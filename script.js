@@ -104,22 +104,38 @@ items.forEach((_, i) => {
   dotsBox.append(d);
 });
 
+// tidy deck: even spacing in item-widths, graduated scale/opacity, no rotation
+const SCALES = [1, .8, .62];
+const FADES = [1, .5, .18];
 function go(i) {
   active = (i + items.length) % items.length;
   items.forEach((el, j) => {
     const off = j - active;
-    el.style.transform =
-      `translateX(calc(-50% + ${off * 150}px)) scale(${off ? .76 : 1}) rotateY(${off * -14}deg)`;
+    const d = Math.min(Math.abs(off), 2);
+    el.style.transform = `translateX(calc(-50% + ${off * 68}%)) scale(${SCALES[d]})`;
     el.style.zIndex = 10 - Math.abs(off);
-    el.style.opacity = Math.abs(off) > 2 ? 0 : off ? .4 : 1;
+    el.style.opacity = Math.abs(off) > 2 ? 0 : FADES[d];
     el.classList.toggle("active", !off);
   });
   [...dotsBox.children].forEach((d, j) => d.classList.toggle("active", j === active));
 }
 go(active);
 
+// swipe / drag to navigate
+let dragX = null, dragged = false;
+const stage = document.getElementById("cStage");
+stage.addEventListener("pointerdown", e => (dragX = e.clientX));
+stage.addEventListener("pointerup", e => {
+  if (dragX === null) return;
+  const dx = e.clientX - dragX;
+  dragX = null;
+  dragged = Math.abs(dx) > 40;
+  if (dragged) go(active + (dx < 0 ? 1 : -1));
+});
+
 items.forEach((el, i) => {
   el.onclick = () => {
+    if (dragged) return (dragged = false); // swipe already handled it
     if (i !== active) return go(i);
     lightbox.querySelector("img").src = el.querySelector("img").src;
     lightbox.showModal();
