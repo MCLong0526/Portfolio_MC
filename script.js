@@ -1,13 +1,3 @@
-// ═══ theme toggle (persisted) ═══
-const root = document.documentElement;
-if (localStorage.theme === "dark" || (!localStorage.theme && matchMedia("(prefers-color-scheme: dark)").matches)) {
-  root.dataset.theme = "dark";
-}
-document.getElementById("themeToggle").onclick = () => {
-  root.dataset.theme = root.dataset.theme === "dark" ? "" : "dark";
-  localStorage.theme = root.dataset.theme;
-};
-
 // ═══ typewriter hero ═══
 const roles = ["Software Engineer", "Java Backend Developer", "Flutter App Founder", "AI-assisted Builder"];
 const tw = document.getElementById("typewriter");
@@ -109,19 +99,47 @@ function lbShow(i) {
     lbImg.onload = () => { lbImg.style.opacity = 1; lbImg.style.transform = ""; };
   }, 170);
 }
+// FLIP zoom: the popup grows out of the tapped thumbnail and shrinks back on close
+const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+function flipDelta(from, to) {
+  return {
+    dx: (from.left + from.width / 2) - (to.left + to.width / 2),
+    dy: (from.top + from.height / 2) - (to.top + to.height / 2),
+    s: from.width / to.width,
+  };
+}
 function lbOpen() {
-  lbImg.src = items[active].querySelector("img").src;
+  const thumb = items[active].querySelector("img");
+  lbImg.src = thumb.src;
   lbImg.style.opacity = 1;
   lbImg.style.transform = "";
   lbMeta();
   lightbox.showModal();
+  const from = thumb.getBoundingClientRect();
+  const to = lbImg.getBoundingClientRect();
+  if (reduced() || !from.height || !to.height) return; // fallback: appear in place
+  const { dx, dy, s } = flipDelta(from, to);
+  lbImg.animate(
+    [{ transform: `translate(${dx}px, ${dy}px) scale(${s})` }, { transform: "none" }],
+    { duration: 420, easing: "cubic-bezier(.22,1,.36,1)" }
+  );
 }
 function lbClose() {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return lightbox.close();
+  if (reduced()) return lightbox.close();
   lightbox.classList.add("closing");
   const done = () => { lightbox.classList.remove("closing"); lightbox.close(); };
-  lightbox.addEventListener("animationend", done, { once: true });
-  setTimeout(done, 280); // fallback if the animation is skipped; double-close is harmless
+  const img = lbImg.getBoundingClientRect();
+  const thumb = items[active].querySelector("img").getBoundingClientRect();
+  if (img.height && thumb.height) {
+    const { dx, dy, s } = flipDelta(thumb, img); // end where the thumbnail sits
+    lbImg.animate(
+      [{ transform: "none", opacity: 1 }, { transform: `translate(${dx}px, ${dy}px) scale(${s})`, opacity: .3 }],
+      { duration: 260, easing: "cubic-bezier(.4,0,.7,.2)" }
+    ).addEventListener("finish", done, { once: true });
+  } else {
+    lightbox.addEventListener("animationend", done, { once: true });
+  }
+  setTimeout(done, 340); // fallback if animations are skipped; double-close is harmless
 }
 lightbox.querySelector(".lightbox-close").onclick = lbClose;
 lightbox.onclick = e => e.target === lightbox && lbClose();
