@@ -1,5 +1,5 @@
 // ═══ typewriter hero ═══
-const roles = ["Software Engineer", "Java Backend Developer", "Flutter App Founder", "AI-assisted Builder"];
+const roles = ["Software Engineer", "Java Backend Developer", "Side-Project Builder", "AI-assisted Builder"];
 const tw = document.getElementById("typewriter");
 let ri = 0, ci = 0, deleting = false;
 (function type() {
